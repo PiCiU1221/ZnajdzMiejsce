@@ -1,0 +1,7 @@
+POST localhost:8080/api/authenticate/administrator
+Content-Type: application/json
+
+{
+  "email": "test@testadministrator.com",
+  "password": "password"
+}

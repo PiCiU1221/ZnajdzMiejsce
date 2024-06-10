@@ -1,0 +1,17 @@
+HTTP/1.1 200
+Vary: Origin
+Vary: Access-Control-Request-Method
+Vary: Access-Control-Request-Headers
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QHRlc3RkZXZlbG9wZXIuY29tIiwiaWF0IjoxNzE3NDQ5OTM0LCJleHAiOjE3MTc1MzYzMzR9.7YpZSzJROK1k9DPT_ZfHXRQeEU8VUewJqH04lf_53WA
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 0
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+X-Frame-Options: DENY
+Content-Length: 0
+Date: Mon, 03 Jun 2024 21:25:34 GMT
+
+<Response body is empty>
+
+Response code: 200; Time: 417ms (417 ms); Content length: 0 bytes (0 B)
