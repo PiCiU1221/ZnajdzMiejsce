@@ -36,7 +36,7 @@ public class AuthService {
 
             UserDetails userDetails = userDetailsService.loadUserByUsername(loginRequestDTO.getEmail() + ":" + roleName);
 
-            return jwtService.generateToken(userDetails);
+            return jwtService.generateToken(userDetails, roleName);
         } catch (BadCredentialsException e) {
             throw new AuthenticationFailedException("Invalid username or password");
         } catch (LockedException e) {

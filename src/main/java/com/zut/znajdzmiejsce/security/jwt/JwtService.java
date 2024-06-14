@@ -21,10 +21,10 @@ public class JwtService {
     @Value("${JWT_SECRET}")
     private String secret;
 
-    public String generateToken(UserDetails userDetails) {
+    public String generateToken(UserDetails userDetails, String roleName) {
         return Jwts
                 .builder()
-                .setSubject(userDetails.getUsername())
+                .setSubject(userDetails.getUsername() + ":" + roleName)
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + expiration))
                 .signWith(SignatureAlgorithm.HS256, getSigningKey())

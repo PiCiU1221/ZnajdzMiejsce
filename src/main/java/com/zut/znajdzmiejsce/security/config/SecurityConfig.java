@@ -4,6 +4,7 @@ import com.zut.znajdzmiejsce.security.jwt.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -33,6 +34,26 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/api/authenticate/**").permitAll()
                         .requestMatchers("/api/register/**").permitAll()
+
+                        // Reservations
+                        .requestMatchers("/api/reservations/**").hasAuthority("USER")
+
+                        // Parking lots
+                        .requestMatchers(HttpMethod.GET, "/api/parking-lots/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/parking-lots/**").hasRole("ADMINISTRATOR")
+                        .requestMatchers(HttpMethod.PUT, "/api/parking-lots/**").hasRole("ADMINISTRATOR")
+                        .requestMatchers(HttpMethod.DELETE, "/api/parking-lots/**").hasRole("ADMINISTRATOR")
+
+                        // Parking spots
+                        .requestMatchers(HttpMethod.GET, "/api/parking-lots/**/parking-spots/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/parking-lots/**/parking-spots/**").hasRole("ADMINISTRATOR")
+                        .requestMatchers(HttpMethod.PUT, "/api/parking-lots/**/parking-spots/**").hasRole("ADMINISTRATOR")
+                        .requestMatchers(HttpMethod.DELETE, "/api/parking-lots/**/parking-spots/**").hasRole("ADMINISTRATOR")
+
+                        // Parking spot statuses
+                        // temporary
+                        .requestMatchers(HttpMethod.GET, "/api/parking-lots/**/parking-spots/**/statuses/**").permitAll()
+
                         .anyRequest().authenticated()
                 )
                 .authenticationProvider(authenticationProvider)
